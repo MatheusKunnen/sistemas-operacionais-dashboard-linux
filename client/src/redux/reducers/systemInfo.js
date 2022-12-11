@@ -1,9 +1,10 @@
-import { ON_UPDATE_SYSTEM_STATUS } from '../types';
+import { ON_UPDATE_SYSTEM_STATUS, ON_UPDATE_DISK_INFO } from '../types';
 
 const initialState = {
   system_status: null,
   processes: [],
   system_status_history: [],
+  disk_info: [],
 };
 const max_history = 60;
 const authReducer = (state = initialState, action) => {
@@ -26,7 +27,11 @@ const authReducer = (state = initialState, action) => {
         system_status: { ...action.payload, process: undefined },
         processes: action.payload.process ? action.payload.process : [],
       };
-
+    case ON_UPDATE_DISK_INFO:
+      return {
+        ...state,
+        disk_info: action.payload,
+      };
     default:
       return state;
   }

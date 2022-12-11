@@ -7,9 +7,10 @@ const PanelItem = ({
   title,
   children,
   disableButtons,
+  dWidth,
   ...props
 }) => {
-  const [width, setWidth] = useState(100);
+  const [width, setWidth] = useState(isNaN(dWidth) ? 100 : dWidth);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);

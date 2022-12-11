@@ -1,5 +1,5 @@
 const prettyBytes = (bytes) => {
-  let aux = bytes;
+  let aux = bytes * 1024;
   let count = 0;
   while (aux > 1024) {
     aux /= 1024;

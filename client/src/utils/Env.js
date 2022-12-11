@@ -6,4 +6,8 @@ const getAppBase = () => {
   return process.env.REACT_APP_APP_BASE || '';
 };
 
-module.exports = { getDefaultServerHost, getAppBase };
+const getAnimationDuration = () => {
+  return 100;
+};
+
+module.exports = { getDefaultServerHost, getAppBase, getAnimationDuration };

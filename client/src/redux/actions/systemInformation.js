@@ -28,7 +28,7 @@ export const updateSystemStatus = () => async (dispatch, getState) => {
 
 export const updateDiskStats = () => async (dispatch, getState) => {
   try {
-    const url = Url.getSystemInfoUrl();
+    const url = Url.getDiskInfoUrl();
     const res = await rfetch(
       url,
       {
@@ -39,7 +39,7 @@ export const updateDiskStats = () => async (dispatch, getState) => {
     );
     const json = await res.json();
     if (res.status === 200) {
-      dispatch({ type: ON_UPDATE_SYSTEM_STATUS, payload: json.data });
+      dispatch({ type: ON_UPDATE_DISK_INFO, payload: json.data });
     }
   } catch (err) {
     console.error(err);

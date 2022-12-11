@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
+import { getAnimationDuration } from '../../utils/Env';
 
 const LoadGraph = ({ system_status_history, height, ...props }) => {
   if (typeof height === 'undefined') height = 300;
@@ -34,9 +35,30 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
         <YAxis />
         <Tooltip />
         <CartesianGrid strokeDasharray="10 10" stroke="#f5f5f5" />
-        <Line type="monotone" dataKey="load_5" yAxisId={0} stroke="#00F5FF" />
-        <Line type="monotone" dataKey="load_10" yAxisId={0} stroke="#FCE700" />
-        <Line type="monotone" dataKey="load_15" yAxisId={0} stroke="#FF6D28" />
+        <Line
+          animationDuration={getAnimationDuration()}
+          dot={false}
+          type="monotone"
+          dataKey="load_5"
+          yAxisId={0}
+          stroke="#00F5FF"
+        />
+        <Line
+          animationDuration={getAnimationDuration()}
+          dot={false}
+          type="monotone"
+          dataKey="load_10"
+          yAxisId={0}
+          stroke="#FCE700"
+        />
+        <Line
+          animationDuration={getAnimationDuration()}
+          dot={false}
+          type="monotone"
+          dataKey="load_15"
+          yAxisId={0}
+          stroke="#FF6D28"
+        />
         {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
       </LineChart>
     </ResponsiveContainer>

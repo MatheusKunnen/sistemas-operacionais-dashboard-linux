@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
+import { getAnimationDuration } from '../../utils/Env';
 
 const LoadGraph = ({ system_status_history, height, ...props }) => {
   if (typeof height === 'undefined') height = 300;
@@ -35,6 +36,7 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
         <Tooltip />
         <CartesianGrid stroke="#f5f5f5" />
         <Area
+          animationDuration={getAnimationDuration()}
           dataKey="total_memory"
           yAxisId={0}
           stroke="#FCE700"
@@ -43,6 +45,7 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
         />
 
         <Area
+          animationDuration={getAnimationDuration()}
           dataKey="free_memory"
           yAxisId={0}
           stroke="#00F5FF"
@@ -50,6 +53,7 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           opacity="100%"
         />
         <Area
+          animationDuration={getAnimationDuration()}
           dataKey="used_memory"
           yAxisId={0}
           stroke="#FF6D28"

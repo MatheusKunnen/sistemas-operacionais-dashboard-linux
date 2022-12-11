@@ -15,6 +15,8 @@ import LoadGraph from '../system/LoadGraph';
 import PanelItem from '../layout/PanelItem';
 import MemoryGraph from '../system/MemoryGraph';
 import ProcessGraph from '../system/ProcessGraph';
+import DiskUsage from '../disk/DiskUsage';
+import DiskUsageList from '../disk/DiskUsageList';
 
 const items = [
   {
@@ -30,7 +32,7 @@ const items = [
 ];
 
 const Home = () => {
-  const [tab, setTab] = useState('1');
+  const [tab, setTab] = useState('3');
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [panels, setPanels] = useState([]);
 
@@ -114,6 +116,11 @@ const Home = () => {
               <ProcessGraph height={200} />
             </PanelItem>
             <ProcessList />
+          </>
+        </TabPanel>
+        <TabPanel value="3">
+          <>
+            <DiskUsageList />
           </>
         </TabPanel>
       </TabContext>

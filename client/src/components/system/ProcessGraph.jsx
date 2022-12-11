@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
+import { getAnimationDuration } from '../../utils/Env';
 
 const ProcessGraph = ({ system_status_history, height, ...props }) => {
   if (typeof height === 'undefined') height = 300;
@@ -34,7 +35,13 @@ const ProcessGraph = ({ system_status_history, height, ...props }) => {
         <YAxis />
         <Tooltip />
         <CartesianGrid strokeDasharray="10 10" stroke="#f5f5f5" />
-        <Line type="monotone" dataKey="process" yAxisId={0} stroke="#00F5FF" />
+        <Line
+          animationDuration={getAnimationDuration()}
+          type="monotone"
+          dataKey="process"
+          yAxisId={0}
+          stroke="#00F5FF"
+        />
         {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
       </LineChart>
     </ResponsiveContainer>
