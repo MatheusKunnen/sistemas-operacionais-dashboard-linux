@@ -11,7 +11,11 @@ const authReducer = (state = initialState, action) => {
     case ON_UPDATE_SYSTEM_STATUS:
       const system_status_history = [
         ...state.system_status_history,
-        { ...action.payload, date: Date(), process: undefined },
+        {
+          ...action.payload,
+          date: Date(),
+          process: action.payload.process.length,
+        },
       ];
       return {
         ...state,

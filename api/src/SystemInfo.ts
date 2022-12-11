@@ -169,7 +169,9 @@ export default class SystemInfo {
           user: user,
           priority: Number(pr),
           nice: Number(ni),
-          virtual_memory: Number(virt),
+          virtual_memory: isNaN(Number(virt))
+            ? Number(virt.replace('g', '')) * 1024 * 1024 * 1024
+            : Number(virt),
           used_memory: Number(res),
           shared_memory: Number(shr),
           state: s,

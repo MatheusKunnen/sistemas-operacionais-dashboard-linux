@@ -1,7 +1,14 @@
 import { Box, Button, Typography, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react';
 
-const PanelItem = ({ onRemove, index, title, children, ...props }) => {
+const PanelItem = ({
+  onRemove,
+  index,
+  title,
+  children,
+  disableButtons,
+  ...props
+}) => {
   const [width, setWidth] = useState(100);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleMenuClick = (event) => {
@@ -25,12 +32,22 @@ const PanelItem = ({ onRemove, index, title, children, ...props }) => {
         <Typography variant="h5" sx={{ fontWeight: 'bold', flexGrow: 1 }}>
           {String(title).toUpperCase()}
         </Typography>
-        <Button id="config-btn" onClick={handleMenuClick}>
-          Config
-        </Button>
-        <Button onClick={() => onRemove()} color="error" sx={{ minWidth: 0 }}>
-          X
-        </Button>
+        {!disableButtons ? (
+          <>
+            <Button id="config-btn" onClick={handleMenuClick}>
+              Config
+            </Button>
+            <Button
+              onClick={() => onRemove()}
+              color="error"
+              sx={{ minWidth: 0 }}
+            >
+              X
+            </Button>
+          </>
+        ) : (
+          <></>
+        )}
       </Box>
       <Box>{children}</Box>
       <Menu

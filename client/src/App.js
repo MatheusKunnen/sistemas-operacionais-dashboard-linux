@@ -1,13 +1,13 @@
 import React from 'react';
-import {
-  Switch,
-  Route,
-  BrowserRouter as Router,
-  Redirect,
-} from 'react-router-dom';
+// import {
+//   Switch,
+//   Route,
+//   BrowserRouter as Router,
+//   Redirect,
+// } from 'react-router-dom';
 
-import LoginPage from './components/pages/LoginPage';
-import Url from './utils/Url';
+// import LoginPage from './components/pages/LoginPage';
+// import Url from './utils/Url';
 
 import { Provider } from 'react-redux';
 import { store } from './redux/store';

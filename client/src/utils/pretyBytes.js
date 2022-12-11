@@ -3,7 +3,7 @@ const prettyBytes = (bytes) => {
   let count = 0;
   while (aux > 1024) {
     aux /= 1024;
-    count++;
+    count += 1;
   }
   let label = 'B';
   switch (count) {

@@ -10,10 +10,11 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import SystemMonitor from '../system/SystemMonitor';
+import ProcessList from '../system/ProcessList';
 import LoadGraph from '../system/LoadGraph';
 import PanelItem from '../layout/PanelItem';
 import MemoryGraph from '../system/MemoryGraph';
+import ProcessGraph from '../system/ProcessGraph';
 
 const items = [
   {
@@ -107,7 +108,14 @@ const Home = () => {
             </Button>
           </>
         </TabPanel>
-        <TabPanel value="2"></TabPanel>
+        <TabPanel value="2">
+          <>
+            <PanelItem title={'Número de processos'} disableButtons={true}>
+              <ProcessGraph height={200} />
+            </PanelItem>
+            <ProcessList />
+          </>
+        </TabPanel>
       </TabContext>
     </Box>
   );
