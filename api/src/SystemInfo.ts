@@ -1,4 +1,5 @@
 import DiskInformation from './types/DiskInformation';
+import DiskIOInformation from './types/DiskIOInformation';
 import MemoryInformation from './types/MemoryInformation';
 import ProcessorInformation from './types/ProcessorInformation';
 import ProcessInformation from './types/ProcessInformation';
@@ -207,6 +208,51 @@ export default class SystemInfo {
       zombie_tasks: t_zombie,
       process,
     };
+  }
+
+  public async getDiskIOInformation(): Promise<null | DiskIOInformation[]> {
+    const data = String(await this.runCommand('cat /proc/diskstats'));
+    const io_info = data
+      .split('\n')
+      .filter((l) => l.length > 0)
+      .map((disk) => {
+        const data = disk.replace(/  +/g, ' ').split(' ');
+        const [
+          _,
+          major_number,
+          minor_mumber,
+          device_name,
+          reads_completed_successfully,
+          reads_merged,
+          sectors_read,
+          time_spent_reading,
+          writes_completed,
+          writes_merged,
+          sectors_written,
+          time_spent_writing,
+          io_currently_in_progress,
+          time_spent_doing_io,
+          weighted_time_spent_doing_io,
+          ...linhas
+        ] = data;
+        return {
+          major_number: Number(major_number),
+          minor_mumber: Number(minor_mumber),
+          device_name: device_name,
+          reads_completed_successfully: Number(reads_completed_successfully),
+          reads_merged: Number(reads_merged),
+          sectors_read: Number(sectors_read),
+          time_spent_reading: Number(time_spent_reading),
+          writes_completed: Number(writes_completed),
+          writes_merged: Number(writes_merged),
+          sectors_written: Number(sectors_written),
+          time_spent_writing: Number(time_spent_writing),
+          io_currently_in_progress: Number(io_currently_in_progress),
+          time_spent_doing_io: Number(time_spent_doing_io),
+          weighted_time_spent_doing_io: Number(weighted_time_spent_doing_io),
+        };
+      });
+    return io_info.filter((item) => item.device_name.match(/sd/gi));
   }
 
   public async test(): Promise<null | void> {

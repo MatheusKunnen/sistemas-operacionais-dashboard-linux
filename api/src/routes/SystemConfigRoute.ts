@@ -25,6 +25,11 @@ export default class SystemConfigRoute extends Route {
       asyncHandler(this.controller.getDiskInformation)
     );
     this.router.get(
+      '/disk_io',
+      // useUser(true),
+      asyncHandler(this.controller.getDiskIOInformation)
+    );
+    this.router.get(
       '/memory',
       // useUser(true),
       asyncHandler(this.controller.getMemoryInformation)

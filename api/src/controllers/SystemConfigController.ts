@@ -49,4 +49,16 @@ export default class SystemConfigController {
     res.status(200).json({ data });
     return;
   }
+
+  public async getDiskIOInformation(
+    req: Request,
+    res: Response,
+    next: Function
+  ): Promise<void> {
+    // if (req.user === undefined) throw new ErrorResponse('Invalid user', 401);
+    const info = new SystemInfo();
+    const data = await info.getDiskIOInformation();
+    res.status(200).json({ data });
+    return;
+  }
 }
