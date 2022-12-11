@@ -16,20 +16,20 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
-  palette: {
-    primary: {
-      main: '#ff9900',
-    },
-    secondary: {
-      main: '#0066ff',
-    },
-    error: {
-      main: '#A40000',
-    },
-    background: {
-      default: '#fff',
-    },
-  },
+  // palette: {
+  //   primary: {
+  //     main: '#ff9900',
+  //   },
+  //   secondary: {
+  //     main: '#0066ff',
+  //   },
+  //   error: {
+  //     main: '#A40000',
+  //   },
+  //   background: {
+  //     default: '#fff',
+  //   },
+  // },
 });
 
 export default theme;

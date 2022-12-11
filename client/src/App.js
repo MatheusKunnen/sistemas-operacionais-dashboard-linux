@@ -23,7 +23,8 @@ function App() {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Router>
+          <HomePage />
+          {/* <Router>
             <Switch>
               <Route exact path={Url.getLoginPageUrl()} component={LoginPage} />
               <Route exact path={Url.getHomePageUrl()} component={HomePage} />
@@ -31,7 +32,7 @@ function App() {
                 <Redirect to={Url.getLoginPageUrl()} />
               </Route>
             </Switch>
-          </Router>
+          </Router> */}
         </ThemeProvider>
       </Provider>
     </div>

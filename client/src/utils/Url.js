@@ -13,6 +13,10 @@ const getSystemInfoUrl = (host = defaultServerHost) => {
   return `${host}/system/info`;
 };
 
+const getDiskInfoUrl = (host = defaultServerHost) => {
+  return `${host}/system/disk`;
+};
+
 // Front-end
 const getLoginPageUrl = (appBase = defaultAppBase) => {
   return `${appBase}/login`;
@@ -27,4 +31,5 @@ module.exports = {
   getLoginPageUrl,
   getHomePageUrl,
   getSystemInfoUrl,
+  getDiskInfoUrl,
 };

@@ -7,7 +7,7 @@ const getMainStyle = (theme) =>
       height: '100vh',
       width: '100vw',
       display: 'flex',
-      background: 'orange',
+      background: '$FFF',
     },
     loginContainer: {
       width: '30rem',

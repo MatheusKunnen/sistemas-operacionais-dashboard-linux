@@ -14,9 +14,9 @@ import { logout } from '../../redux/actions/auth';
 import Url from '../../utils/Url';
 import prettyBytes from '../../utils/pretyBytes';
 
-const SystemMonitor = ({ token, logout, ...props }) => {
+const SystemMonitor = ({ token, processes, sysInfo, ...props }) => {
   const [process_list, setProcessList] = useState([]);
-
+  // console.log(sysInfo);
   const updateProcessList = async () => {
     try {
       const res = await fetch(Url.getSystemInfoUrl(), {
@@ -39,18 +39,18 @@ const SystemMonitor = ({ token, logout, ...props }) => {
 
   useEffect(() => {
     // if (token == null) return;
-    let ok = true;
-    const run = async () => {
-      let tmp_data = await updateProcessList();
-      if (!ok) return;
-      if (tmp_data) setProcessList(tmp_data);
-    };
-    run();
-    const interval = setInterval(() => run(false), 1000);
-    return () => {
-      ok = false;
-      clearInterval(interval);
-    };
+    // let ok = true;
+    // const run = async () => {
+    //   let tmp_data = await updateProcessList();
+    //   if (!ok) return;
+    //   if (tmp_data) setProcessList(tmp_data);
+    // };
+    // run();
+    // const interval = setInterval(() => run(false), 1000);
+    // return () => {
+    //   ok = false;
+    //   clearInterval(interval);
+    // };
     // eslint-disable-next-line
   }, []);
 
@@ -66,6 +66,7 @@ const SystemMonitor = ({ token, logout, ...props }) => {
         <Typography variant="h6">Process</Typography>
       </Box>
       {/* <LockerOcupationList process_list={process_list} /> */}
+
       <Table>
         <TableHead>
           <TableRow>
@@ -83,8 +84,8 @@ const SystemMonitor = ({ token, logout, ...props }) => {
         </TableHead>
 
         <TableBody>
-          {process_list.map((process) => (
-            <TableRow>
+          {processes.map((process) => (
+            <TableRow key={`p-${process.pid}`}>
               <TableCell>{process.pid}</TableCell>
               <TableCell>{process.user}</TableCell>
               <TableCell>{process.priority}</TableCell>
@@ -105,6 +106,8 @@ const SystemMonitor = ({ token, logout, ...props }) => {
 
 const mapStateToProps = (state, ownProps) => ({
   token: state.auth.token,
+  processes: state.systemInfo.processes,
+  sysInfo: state.systemInfo,
   ...ownProps,
 });
 
