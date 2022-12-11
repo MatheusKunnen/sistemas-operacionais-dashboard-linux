@@ -3,6 +3,7 @@ import {
   ON_UPDATE_SYSTEM_STATUS,
   ON_UPDATE_SYSTEM_INFORMATION,
   ON_UPDATE_DISK_INFO,
+  ON_UPDATE_DISK_IO_INFO,
 } from '../types';
 import rfetch from './rfetch';
 
@@ -40,6 +41,26 @@ export const updateDiskStats = () => async (dispatch, getState) => {
     const json = await res.json();
     if (res.status === 200) {
       dispatch({ type: ON_UPDATE_DISK_INFO, payload: json.data });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updateDiskIOStats = () => async (dispatch, getState) => {
+  try {
+    const url = Url.getDiskIOInfoUrl();
+    const res = await rfetch(
+      url,
+      {
+        useAuth: true,
+      },
+      dispatch,
+      getState
+    );
+    const json = await res.json();
+    if (res.status === 200) {
+      dispatch({ type: ON_UPDATE_DISK_IO_INFO, payload: json.data });
     }
   } catch (err) {
     console.error(err);

@@ -17,6 +17,7 @@ import MemoryGraph from '../system/MemoryGraph';
 import ProcessGraph from '../system/ProcessGraph';
 import DiskUsage from '../disk/DiskUsage';
 import DiskUsageList from '../disk/DiskUsageList';
+import DiskIOGraph from '../disk/DiskIOGraph';
 
 const items = [
   {
@@ -28,6 +29,16 @@ const items = [
     id: 'ram-usage',
     title: 'Uso de RAM',
     component: MemoryGraph,
+  },
+  {
+    id: 'io-disco',
+    title: 'IO Disco ',
+    component: DiskIOGraph,
+  },
+  {
+    id: 'capacidade-disco',
+    title: 'Uso de Disco ',
+    component: DiskUsage,
   },
 ];
 
