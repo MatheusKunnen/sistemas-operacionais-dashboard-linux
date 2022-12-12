@@ -35,7 +35,7 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
         />
         <YAxis tickFormatter={(label) => prettyBytes(label)} />
 
-        <Tooltip labelFormatter={(label) => prettyBytes(label)} />
+        <Tooltip formatter={(label) => prettyBytes(label)} />
         <CartesianGrid stroke="#f5f5f5" />
         <Area
           animationDuration={getAnimationDuration()}
@@ -65,9 +65,6 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           fill="#FF6D28"
           opacity="100%"
         />
-        {/* <Area dataKey="buffers_memory" yAxisId={0} stroke="#008a25" /> */}
-        {/* <Line dataKey="load_15" yAxisId={0} stroke="#8a0000" /> */}
-        {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
       </AreaChart>
     </ResponsiveContainer>
   );
