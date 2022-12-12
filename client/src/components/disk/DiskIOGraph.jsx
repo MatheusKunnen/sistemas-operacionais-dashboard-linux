@@ -1,7 +1,6 @@
 import { Box, Menu, MenuItem, Button, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
 import {
   LineChart,
   XAxis,
@@ -17,7 +16,7 @@ import prettyBytes from '../../utils/pretyBytes';
 const getDiskObj = (disk_info, disk) => {
   return disk_info
     .map((disks) => {
-      const dd = disks.data.find((da) => da.device_name === disk);
+      const dd = disks.data.find((da) => da.device === disk);
       if (!dd) return null;
 
       return { ...dd, date: disks.date };
@@ -48,7 +47,7 @@ const DiskIOGraph = ({ disk_info, d_disk, height, ...props }) => {
   if (disk_info === null) return <></>;
 
   const devices =
-    disk_info.length <= 0 ? [] : disk_info[0].data.map((e) => e.device_name);
+    disk_info.length <= 0 ? [] : disk_info[0].data.map((e) => e.device);
   // console.log(devices);
   return (
     <Box>
@@ -78,18 +77,36 @@ const DiskIOGraph = ({ disk_info, d_disk, height, ...props }) => {
                   )}`;
                 }}
               />
-              <YAxis />
+              <YAxis tickFormatter={(label) => prettyBytes(label)} />
               <Tooltip />
               <CartesianGrid strokeDasharray="10 10" stroke="#f5f5f5" />
               <Line
                 animationDuration={getAnimationDuration()}
                 dot={false}
                 type="monotone"
-                dataKey="load_5"
-                yAxisId={0}
-                stroke="#00F5FF"
+                dataKey="read_per_s"
+          name="LEITURA"
+          yAxisId={0}
+                stroke="#b30000"
               />
-              {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
+              <Line
+                animationDuration={getAnimationDuration()}
+                dot={false}
+                type="monotone"
+                dataKey="write_per_s"
+                name="ESCRITURA"
+                yAxisId={0}
+                stroke="#FCE700"
+              />
+              {/* <Line
+                animationDuration={getAnimationDuration()}
+                dot={false}
+                type="monotone"
+                daname="DESCARTADO"
+                taKey="discard_per_s"
+                yAxisId={0}
+                stroke="#FF6D28"
+              /> */}
             </LineChart>
           </ResponsiveContainer>
         </Box>

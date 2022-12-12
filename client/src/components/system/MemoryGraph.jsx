@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { getAnimationDuration } from '../../utils/Env';
+import prettyBytes from '../../utils/pretyBytes';
 
 const LoadGraph = ({ system_status_history, height, ...props }) => {
   if (typeof height === 'undefined') height = 300;
@@ -32,12 +33,14 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
             ).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
           }}
         />
-        <YAxis />
-        <Tooltip />
+        <YAxis tickFormatter={(label) => prettyBytes(label)} />
+
+        <Tooltip labelFormatter={(label) => prettyBytes(label)} />
         <CartesianGrid stroke="#f5f5f5" />
         <Area
           animationDuration={getAnimationDuration()}
           dataKey="total_memory"
+          name="MEMORIA TOTAL"
           yAxisId={0}
           stroke="#FCE700"
           fill="#FCE700"
@@ -47,14 +50,16 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
         <Area
           animationDuration={getAnimationDuration()}
           dataKey="free_memory"
+          name="MEMORIA LIVRE"
           yAxisId={0}
-          stroke="#00F5FF"
-          fill="#00F5FF"
+          stroke="#b30000"
+          fill="#b30000"
           opacity="100%"
         />
         <Area
           animationDuration={getAnimationDuration()}
           dataKey="used_memory"
+          name="MEMORIA USADA"
           yAxisId={0}
           stroke="#FF6D28"
           fill="#FF6D28"

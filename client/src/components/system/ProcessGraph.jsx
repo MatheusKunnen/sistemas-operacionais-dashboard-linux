@@ -37,12 +37,13 @@ const ProcessGraph = ({ system_status_history, height, ...props }) => {
         <CartesianGrid strokeDasharray="10 10" stroke="#f5f5f5" />
         <Line
           animationDuration={getAnimationDuration()}
+          name="N. PROCESSOS"
           type="monotone"
           dataKey="process"
           yAxisId={0}
-          stroke="#00F5FF"
+          stroke="#b30000"
+          dot={false}
         />
-        {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
       </LineChart>
     </ResponsiveContainer>
   );

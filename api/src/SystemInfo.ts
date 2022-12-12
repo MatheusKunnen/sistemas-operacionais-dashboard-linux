@@ -88,7 +88,7 @@ export default class SystemInfo {
         } as DiskInformation;
       });
 
-    return discos;
+    return discos.filter((item) => !item.mounted_on.match(/[snap]/gi)).filter((item)=> !item.filesystem.match(/udev/gi));
   }
 
   public async getSystemInformation(): Promise<null | SystemInformation> {
@@ -211,48 +211,77 @@ export default class SystemInfo {
   }
 
   public async getDiskIOInformation(): Promise<null | DiskIOInformation[]> {
-    const data = String(await this.runCommand('cat /proc/diskstats'));
-    const io_info = data
+    const data = String(await this.runCommand('iostat'));
+    const linhas = data
       .split('\n')
-      .filter((l) => l.length > 0)
-      .map((disk) => {
-        const data = disk.replace(/  +/g, ' ').split(' ');
+      .filter((item, i) => i > 5 && item.length > 0)
+      .map((item) => {
         const [
-          _,
-          major_number,
-          minor_mumber,
-          device_name,
-          reads_completed_successfully,
-          reads_merged,
-          sectors_read,
-          time_spent_reading,
-          writes_completed,
-          writes_merged,
-          sectors_written,
-          time_spent_writing,
-          io_currently_in_progress,
-          time_spent_doing_io,
-          weighted_time_spent_doing_io,
-          ...linhas
-        ] = data;
+          device,
+          tps,
+          read_per_s,
+          write_per_s,
+          discart_per_s,
+          total_read,
+          total_write,
+          total_discard,
+          ...l
+        ] = item.replace(/  +/g, ' ').split(' ');
         return {
-          major_number: Number(major_number),
-          minor_mumber: Number(minor_mumber),
-          device_name: device_name,
-          reads_completed_successfully: Number(reads_completed_successfully),
-          reads_merged: Number(reads_merged),
-          sectors_read: Number(sectors_read),
-          time_spent_reading: Number(time_spent_reading),
-          writes_completed: Number(writes_completed),
-          writes_merged: Number(writes_merged),
-          sectors_written: Number(sectors_written),
-          time_spent_writing: Number(time_spent_writing),
-          io_currently_in_progress: Number(io_currently_in_progress),
-          time_spent_doing_io: Number(time_spent_doing_io),
-          weighted_time_spent_doing_io: Number(weighted_time_spent_doing_io),
+          device: device,
+          tps: Number(tps) * 1024,
+          read_per_s: Number(read_per_s) * 1024,
+          write_per_s: Number(write_per_s) * 1024,
+          discart_per_s: Number(discart_per_s) * 1024,
+          total_read: Number(total_read) * 1024,
+          total_write: Number(total_write) * 1024,
+          total_discard: Number(total_discard) * 1024,
         };
       });
-    return io_info.filter((item) => item.device_name.match(/sd/gi));
+    // console.log(linhas);
+    return linhas.filter((device) => !device.device.match(/loop/ig));
+    // const data = String(await this.runCommand('cat /proc/diskstats'));
+    // const io_info = data
+    //   .split('\n')
+    //   .filter((l) => l.length > 0)
+    //   .map((disk) => {
+    //     const data = disk.replace(/  +/g, ' ').split(' ');
+    //     const [
+    //       _,
+    //       major_number,
+    //       minor_mumber,
+    //       device_name,
+    //       reads_completed_successfully,
+    //       reads_merged,
+    //       sectors_read,
+    //       time_spent_reading,
+    //       writes_completed,
+    //       writes_merged,
+    //       sectors_written,
+    //       time_spent_writing,
+    //       io_currently_in_progress,
+    //       time_spent_doing_io,
+    //       weighted_time_spent_doing_io,
+    //       ...linhas
+    //     ] = data;
+    //     return {
+    //       major_number: Number(major_number),
+    //       minor_mumber: Number(minor_mumber),
+    //       device_name: device_name,
+    //       reads_completed_successfully: Number(reads_completed_successfully),
+    //       reads_merged: Number(reads_merged),
+    //       sectors_read: Number(sectors_read),
+    //       time_spent_reading: Number(time_spent_reading),
+    //       writes_completed: Number(writes_completed),
+    //       writes_merged: Number(writes_merged),
+    //       sectors_written: Number(sectors_written),
+    //       time_spent_writing: Number(time_spent_writing),
+    //       io_currently_in_progress: Number(io_currently_in_progress),
+    //       time_spent_doing_io: Number(time_spent_doing_io),
+    //       weighted_time_spent_doing_io: Number(weighted_time_spent_doing_io),
+    //     };
+    //   });
+    // return io_info.filter((item) => item.device_name.match(/[sd|nv]/gi));
   }
 
   public async test(): Promise<null | void> {

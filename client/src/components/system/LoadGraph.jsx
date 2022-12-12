@@ -41,7 +41,7 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           type="monotone"
           dataKey="load_5"
           yAxisId={0}
-          stroke="#00F5FF"
+          stroke="#b30000"
         />
         <Line
           animationDuration={getAnimationDuration()}

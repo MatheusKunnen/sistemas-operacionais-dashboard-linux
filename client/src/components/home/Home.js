@@ -18,6 +18,8 @@ import ProcessGraph from '../system/ProcessGraph';
 import DiskUsage from '../disk/DiskUsage';
 import DiskUsageList from '../disk/DiskUsageList';
 import DiskIOGraph from '../disk/DiskIOGraph';
+import CpuUsage from '../system/CpuUsage';
+import SwapGraph from '../system/SwapGraph';
 
 const items = [
   {
@@ -26,9 +28,19 @@ const items = [
     component: LoadGraph,
   },
   {
+    id: 'uso-cpu',
+    title: 'Uso de CPU ',
+    component: CpuUsage,
+  },
+  {
     id: 'ram-usage',
     title: 'Uso de RAM',
     component: MemoryGraph,
+  },
+  {
+    id: 'swap-usage',
+    title: 'Uso de SWAP',
+    component: SwapGraph,
   },
   {
     id: 'io-disco',
@@ -40,12 +52,25 @@ const items = [
     title: 'Uso de Disco ',
     component: DiskUsage,
   },
+  
 ];
 
 const Home = () => {
-  const [tab, setTab] = useState('3');
+  const [tab, setTab] = useState('1');
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [panels, setPanels] = useState([]);
+  const [panels, setPanels] = useState([
+    { key: 'cpu-load', title: 'Uso de CPU', component: <CpuUsage /> },
+    { key: 'system-load', title: 'Carga do sistema', component: <LoadGraph /> },
+    {
+      key: 'ram-usage',
+      title: 'Uso de RAM',
+      component: <MemoryGraph />,
+    },    {
+      key: 'swap-usage',
+      title: 'Uso de SWAP',
+      component: <SwapGraph />,
+    },
+  ]);
 
   const handleChange = (e, newValue) => {
     setTab(newValue);
@@ -111,6 +136,7 @@ const Home = () => {
                   key={`${item.key}`}
                   title={item.title}
                   onRemove={() => onRemovePanel(item.key)}
+                  dWidth={48}
                 >
                   {item.component}
                 </PanelItem>
