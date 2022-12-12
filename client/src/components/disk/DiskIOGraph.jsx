@@ -78,15 +78,15 @@ const DiskIOGraph = ({ disk_info, d_disk, height, ...props }) => {
                 }}
               />
               <YAxis tickFormatter={(label) => prettyBytes(label)} />
-              <Tooltip />
+              <Tooltip formatter={(label) => prettyBytes(label)} />
               <CartesianGrid strokeDasharray="10 10" stroke="#f5f5f5" />
               <Line
                 animationDuration={getAnimationDuration()}
                 dot={false}
                 type="monotone"
                 dataKey="read_per_s"
-          name="LEITURA"
-          yAxisId={0}
+                name="LEITURA"
+                yAxisId={0}
                 stroke="#b30000"
               />
               <Line
