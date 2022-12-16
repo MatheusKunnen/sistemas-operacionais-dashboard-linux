@@ -41,8 +41,8 @@ const SwapGraph = ({ system_status_history, height, ...props }) => {
           name="SWAP TOTAL"
           dataKey="total_swap"
           yAxisId={0}
-          stroke="#FCE700"
-          fill="#FCE700"
+          stroke="#0086b3"
+          fill="#0086b3"
           opacity="100%"
         />
 
@@ -51,8 +51,8 @@ const SwapGraph = ({ system_status_history, height, ...props }) => {
           name="SWAP LIVRE"
           dataKey="free_swap"
           yAxisId={0}
-          stroke="#b30000"
-          fill="#b30000"
+          stroke="#cc0052"
+          fill="#cc0052"
           opacity="100%"
         />
         <Area
@@ -60,8 +60,8 @@ const SwapGraph = ({ system_status_history, height, ...props }) => {
           name="SWAP USADO"
           dataKey="used_swap"
           yAxisId={0}
-          stroke="#FF6D28"
-          fill="#FF6D28"
+          stroke="#a90000"
+          fill="#a90000"
           opacity="100%"
         />
         {/* <Area dataKey="buffers_memory" yAxisId={0} stroke="#008a25" /> */}

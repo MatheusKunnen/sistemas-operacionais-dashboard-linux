@@ -45,8 +45,10 @@ export default class SystemConfigController {
   ): Promise<void> {
     // if (req.user === undefined) throw new ErrorResponse('Invalid user', 401);
     const info = new SystemInfo();
-    const data = await info.getProcessorInformation();
-    res.status(200).json({ data });
+    const cpu = await info.getProcessorInformation();
+    const memory = await info.getMemoryInformation();
+    const so = await info.runCommand('cat /proc/version')
+    res.status(200).json({ data:{cpu, memory, so} });
     return;
   }
 

@@ -20,6 +20,7 @@ import DiskUsageList from '../disk/DiskUsageList';
 import DiskIOGraph from '../disk/DiskIOGraph';
 import CpuUsage from '../system/CpuUsage';
 import SwapGraph from '../system/SwapGraph';
+import SystemInfo from '../system/SystemInfo';
 
 const items = [
   {
@@ -122,6 +123,7 @@ const Home = () => {
             <Tab label="Dashboard" value="1" />
             <Tab label="Processos" value="2" />
             <Tab label="Discos" value="3" />
+            <Tab label="Sistema" value="4" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -158,6 +160,11 @@ const Home = () => {
         <TabPanel value="3">
           <>
             <DiskUsageList />
+          </>
+        </TabPanel>
+        <TabPanel value="4">
+          <>
+            <SystemInfo/>
           </>
         </TabPanel>
       </TabContext>

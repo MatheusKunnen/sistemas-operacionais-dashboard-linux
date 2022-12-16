@@ -73,7 +73,7 @@ const DiskUsage = ({ disk_info, d_disk, height, ...props }) => {
                 {disk.data.map((entry, index) => (
                   <Cell
                     key={entry}
-                    fill={index === 1 ? '#FCE700' : '#FF6D28'}
+                    fill={index === 1 ? '#0086b3' : '#a90000'}
                   />
                 ))}
               </Pie>

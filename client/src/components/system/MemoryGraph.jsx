@@ -42,8 +42,8 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           dataKey="total_memory"
           name="MEMORIA TOTAL"
           yAxisId={0}
-          stroke="#FCE700"
-          fill="#FCE700"
+          stroke="#0086b3"
+          fill="#0086b3"
           opacity="100%"
         />
 
@@ -52,8 +52,8 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           dataKey="free_memory"
           name="MEMORIA LIVRE"
           yAxisId={0}
-          stroke="#b30000"
-          fill="#b30000"
+          stroke="#cc0052"
+          fill="#cc0052"
           opacity="100%"
         />
         <Area
@@ -61,8 +61,8 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           dataKey="used_memory"
           name="MEMORIA USADA"
           yAxisId={0}
-          stroke="#FF6D28"
-          fill="#FF6D28"
+          stroke="#a90000"
+          fill="#a90000"
           opacity="100%"
         />
       </AreaChart>

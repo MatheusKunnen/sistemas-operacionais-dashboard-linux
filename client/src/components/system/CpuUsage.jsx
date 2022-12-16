@@ -42,7 +42,7 @@ const CpuUsage = ({ system_status_history, height, ...props }) => {
           name="USUARIO"
           dataKey="user_cpu_usage"
           yAxisId={0}
-          stroke="#b30000"
+          stroke="#cc0052"
         />
         <Line
           animationDuration={getAnimationDuration()}
@@ -51,7 +51,7 @@ const CpuUsage = ({ system_status_history, height, ...props }) => {
           dataKey="system_cpu_usage"
           name="SISTEMA"
           yAxisId={0}
-          stroke="#FCE700"
+          stroke="#0086b3"
         />
         {/* <Line
           animationDuration={getAnimationDuration()}
@@ -59,7 +59,7 @@ const CpuUsage = ({ system_status_history, height, ...props }) => {
           type="monotone"
           dataKey="load_15"
           yAxisId={0}
-          stroke="#FF6D28"
+          stroke="#a90000"
         /> */}
         {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
       </LineChart>

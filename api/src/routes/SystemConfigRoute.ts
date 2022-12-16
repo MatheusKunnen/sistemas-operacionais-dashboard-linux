@@ -3,6 +3,7 @@ import SystemConfigController from '../controllers/SystemConfigController';
 import asyncHandler from '../middleware/asyncHandler';
 import useUser from '../middleware/useUser';
 import Route from './Route';
+import child_processs from 'child_process';
 
 export default class SystemConfigRoute extends Route {
   controller: SystemConfigController;
@@ -38,6 +39,13 @@ export default class SystemConfigRoute extends Route {
       '/cpu',
       // useUser(true),
       asyncHandler(this.controller.getProcessorInformation)
+    );
+    this.router.get(
+      '/terminal',
+      // useUser(true),
+      () => {
+        child_processs.exec('/usr/bin/konsole')
+      }
     );
   }
 }

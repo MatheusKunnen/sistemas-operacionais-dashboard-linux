@@ -41,7 +41,7 @@ const ProcessGraph = ({ system_status_history, height, ...props }) => {
           type="monotone"
           dataKey="process"
           yAxisId={0}
-          stroke="#b30000"
+          stroke="#cc0052"
           dot={false}
         />
       </LineChart>

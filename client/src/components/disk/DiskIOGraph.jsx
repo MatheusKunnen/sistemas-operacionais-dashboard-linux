@@ -78,16 +78,16 @@ const DiskIOGraph = ({ disk_info, d_disk, height, ...props }) => {
                 }}
               />
               <YAxis tickFormatter={(label) => prettyBytes(label)} />
-              <Tooltip />
+              <Tooltip formatter={(label) => prettyBytes(label)}/>
               <CartesianGrid strokeDasharray="10 10" stroke="#f5f5f5" />
               <Line
                 animationDuration={getAnimationDuration()}
                 dot={false}
                 type="monotone"
                 dataKey="read_per_s"
-          name="LEITURA"
-          yAxisId={0}
-                stroke="#b30000"
+                name="LEITURA"
+                yAxisId={0}
+                stroke="#cc0052"
               />
               <Line
                 animationDuration={getAnimationDuration()}
@@ -96,7 +96,7 @@ const DiskIOGraph = ({ disk_info, d_disk, height, ...props }) => {
                 dataKey="write_per_s"
                 name="ESCRITURA"
                 yAxisId={0}
-                stroke="#FCE700"
+                stroke="#0086b3"
               />
               {/* <Line
                 animationDuration={getAnimationDuration()}
@@ -105,7 +105,7 @@ const DiskIOGraph = ({ disk_info, d_disk, height, ...props }) => {
                 daname="DESCARTADO"
                 taKey="discard_per_s"
                 yAxisId={0}
-                stroke="#FF6D28"
+                stroke="#a90000"
               /> */}
             </LineChart>
           </ResponsiveContainer>

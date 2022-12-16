@@ -39,25 +39,28 @@ const LoadGraph = ({ system_status_history, height, ...props }) => {
           animationDuration={getAnimationDuration()}
           dot={false}
           type="monotone"
+          name="LOAD 1min"
           dataKey="load_5"
           yAxisId={0}
-          stroke="#b30000"
+          stroke="#cc0052"
         />
         <Line
           animationDuration={getAnimationDuration()}
           dot={false}
           type="monotone"
+          name="LOAD 5min"
           dataKey="load_10"
           yAxisId={0}
-          stroke="#FCE700"
+          stroke="#0086b3"
         />
         <Line
           animationDuration={getAnimationDuration()}
           dot={false}
           type="monotone"
+          name="LOAD 15min"
           dataKey="load_15"
           yAxisId={0}
-          stroke="#FF6D28"
+          stroke="#a90000"
         />
         {/* <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} /> */}
       </LineChart>
